@@ -7,6 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
+import net.bytebuddy.implementation.bind.annotation.Default;
+
 @Entity
 @Table(name="users")
 public class Users {
@@ -20,6 +25,14 @@ public class Users {
 	
 	@Column(name="password")
 	private String password;
+	
+	@Column(name="unlocking")
+	@ColumnDefault("true")
+	private Boolean unlocking ;
+	
+	@Column(name="attempt_count")
+	@ColumnDefault("0")
+	private Integer attemptCount ;
 	
 	@Column(name="role")
 	private String role;
@@ -54,6 +67,22 @@ public class Users {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public Boolean getUnlocking() {
+		return unlocking;
+	}
+
+	public void setUnlocking(Boolean unlocking) {
+		this.unlocking = unlocking;
+	}
+
+	public int getAttemptCount() {
+		return attemptCount;
+	}
+
+	public void setAttemptCount(int attemptCount) {
+		this.attemptCount = attemptCount;
 	}
 	
 	

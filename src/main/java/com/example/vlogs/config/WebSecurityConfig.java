@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 import com.fasterxml.jackson.core.format.MatchStrength;
 
@@ -34,9 +35,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authenticated()
 				.and()
 				.formLogin()
-				.loginPage("/signin")
+				.loginPage("/credential/signin")
 				.loginProcessingUrl("/dologin")
 				.defaultSuccessUrl("/home/displayHome")
+				.failureHandler(authenticationFailureHandler())
+				
 				;
 				
 			
@@ -54,4 +57,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //		return NoOpPasswordEncoder.getInstance();
 		return new BCryptPasswordEncoder();
 	}
+	
+	@Bean
+	public AuthenticationFailureHandler authenticationFailureHandler() {
+		return new CustomAuthenticationFailureHandler();
+	}
+	
 }
