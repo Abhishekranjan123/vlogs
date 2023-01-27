@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +14,8 @@ public class Media {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name="media_id")
+	private Long mediaId;
 	
 	@Column(name="media_path")
 	private String mediaPath;
@@ -26,4 +28,59 @@ public class Media {
 	
 	@Column(name="category_id")
 	private String categoryId;
+	
+	@OneToOne
+	private Posts post;
+	
+	@OneToOne
+
+	public Long getMediaId() {
+		return mediaId;
+	}
+
+	public void setMediaId(Long mediaId) {
+		this.mediaId = mediaId;
+	}
+
+	public String getMediaPath() {
+		return mediaPath;
+	}
+
+	public void setMediaPath(String mediaPath) {
+		this.mediaPath = mediaPath;
+	}
+
+	public String getPlaceId() {
+		return placeId;
+	}
+
+	public void setPlaceId(String placeId) {
+		this.placeId = placeId;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public Posts getPost() {
+		return post;
+	}
+
+	public void setPost(Posts post) {
+		this.post = post;
+	}
+	
+	
 }
