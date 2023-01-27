@@ -25,10 +25,7 @@ public class HomeController {
 	
 	@GetMapping("displayHome")
 	public String home(Model model) {
-		Users currentUser = userService.getCurrentUser();
-		currentUser.setAttemptCount(0);
-		userService.saveUser(currentUser);
-		
+		userService.resetUser();
 		try {
 			List<Media> medias = homeService.getAllMedias();
 			if(medias==null|| medias.isEmpty()) {

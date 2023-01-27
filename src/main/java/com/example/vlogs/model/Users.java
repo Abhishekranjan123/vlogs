@@ -18,12 +18,13 @@ public class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id;
+	@Column(name="user_id")
+	private Long userId;
 	
-	@Column(name="user_name")
+	@Column(name="user_name", unique = true, nullable = false)
 	private String userName;
 	
-	@Column(name="password")
+	@Column(name="password", nullable = false)
 	private String password;
 	
 	@Column(name="unlocking")
@@ -37,12 +38,16 @@ public class Users {
 	@Column(name="role")
 	private String role;
 
-	public Long getId() {
-		return Id;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setId(Long id) {
-		Id = id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public void setAttemptCount(Integer attemptCount) {
+		this.attemptCount = attemptCount;
 	}
 
 	public String getUserName() {

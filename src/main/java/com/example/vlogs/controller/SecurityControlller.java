@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller 
 public class SecurityControlller {
 
-	@GetMapping("/failureHandler")
-	public String failureHandler() {
-		System.out.println("Hello");
-		return "redirect:credential/signin";
-	}
+//	@GetMapping("/failureHandler")
+//	public String failureHandler() {
+//		System.out.println("Hello");
+//		return "redirect:credential/signin";
+//	}
 	
 }

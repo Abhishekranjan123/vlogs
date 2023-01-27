@@ -7,4 +7,5 @@ import com.example.vlogs.model.Users;
 public interface UsersRepository extends JpaRepository<Users, Long> {
 
 	Users findByUserName(String userName);
+	
 }

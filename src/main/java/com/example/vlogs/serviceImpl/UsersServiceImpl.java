@@ -1,5 +1,7 @@
 package com.example.vlogs.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -7,7 +9,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.vlogs.model.Posts;
 import com.example.vlogs.model.Users;
+import com.example.vlogs.repository.PostsRepo;
 import com.example.vlogs.repository.UsersRepository;
 import com.example.vlogs.service.UsersService;
 import com.example.vlogs.vo.UsersVo;
@@ -19,6 +23,9 @@ public class UsersServiceImpl implements UsersService {
 	
 	@Autowired
 	private UsersRepository usersRepository;
+	
+	@Autowired
+	private PostsRepo postsRepo;
 	
 	@Override
 	public void addUser(UsersVo userVo) {
@@ -53,6 +60,23 @@ public class UsersServiceImpl implements UsersService {
 	public void saveUser(Users user) {
 		usersRepository.save(user);
 		
+	}
+
+	@Override
+	public void resetUser() {
+		try {
+			Users currentUser = getCurrentUser();
+			currentUser.setAttemptCount(0);
+			usersRepository.save(currentUser);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public List<Posts> getPostByUserId(Users currentUser) {
+		List<Posts> posts = postsRepo.findByUsers(currentUser);
+		return posts;
 	}
 
 }
