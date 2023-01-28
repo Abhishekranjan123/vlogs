@@ -35,7 +35,7 @@ public class HomeController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Error while geting medias"+ e.getMessage());
+			System.out.println("Errors while geting medias"+ e.getMessage());
 		}
 		return"home";
 	}
