@@ -34,6 +34,7 @@ public class UsersServiceImpl implements UsersService {
 			BeanUtils.copyProperties(userVo, user);
 			user.setAttemptCount(0);
 			user.setUnlocking(true);
+			user.setRole("ROLE_ADMIN");
 			user.setPassword(bCryptPasswordEncoder.encode(userVo.getPassword()));
 			usersRepository.save(user);
 		} catch (Exception e) {
