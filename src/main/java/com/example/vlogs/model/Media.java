@@ -32,8 +32,6 @@ public class Media {
 	@OneToOne
 	private Posts post;
 	
-	@OneToOne
-
 	public Long getMediaId() {
 		return mediaId;
 	}
