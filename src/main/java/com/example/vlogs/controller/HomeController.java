@@ -25,6 +25,7 @@ public class HomeController {
 	
 	@GetMapping("displayHome")
 	public String home(Model model) {
+		System.out.println("in home controller");
 		userService.resetUser();
 		try {
 			List<Media> medias = homeService.getAllMedias();
